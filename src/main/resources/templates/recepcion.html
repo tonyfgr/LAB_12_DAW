@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de Recepcion</title>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>   
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="text-danger">Datos de Registro recibido</h1>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="tipoDocumento" class="text-dark">Tipo de Documento:</label>
+                <p id="tipoDocumento" class="form-control text-danger" th:text="${form.documento}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="numeroDocumento" class="text-dark">Número de Documento:</label>
+                <p id="numeroDocumento" class="form-control text-danger" th:text="${form.nro_documento}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="apellidoPaterno" class="text-dark">Apellido Paterno:</label>
+                <p id="apellidoPaterno" class="form-control text-danger" th:text="${form.apellido_paterno}"></p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="apellidoMaterno" class="text-dark">Apellido Materno:</label>
+                <p id="apellidoMaterno" class="form-control text-danger" th:text="${form.apellido_materno}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="nombres" class="text-dark">Nombres:</label>
+                <p id="nombres" class="form-control text-danger" th:text="${form.nombres}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="sexo" class="text-dark">Sexo:</label>
+                <p id="sexo" class="form-control text-danger" th:text="${form.sexo}"></p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="fechaNacimiento" class="text-dark">Fecha de Nacimiento:</label>
+                <p id="fechaNacimiento" class="form-control text-danger" th:text="${form.dia + '/' + form.mes + '/' + form.anio}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="estadoCivil" class="text-dark">Estado Civil:</label>
+                <p id="estadoCivil" class="form-control text-danger" th:text="${form.est_civil}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="situacionLaboral" class="text-dark">Situación Laboral:</label>
+                <p id="situacionLaboral" class="form-control text-danger" th:text="${form.sit_laboral}"></p>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="ruc" class="text-dark">RUC:</label>
+                <p id="ruc" class="form-control text-danger" th:text="${form.ruc}"></p>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="aceptarTerminos" class="text-dark">Acepto los términos y condiciones:</label>
+                <p id="aceptarTerminos" class="form-control text-danger" th:text="${form.terminos ? 'Sí' : 'No'}"></p>
+            </div>
+        </div>
+
+        <br>
+
+        <div class="form-group text-center">
+            <a href="/formularioRegistro" class="btn btn-danger">Realizar nuevo Registro</a>
+        </div>
+    </div>
+</body>
+</html>
+

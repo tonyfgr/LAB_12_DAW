@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Formulario de envío</title>
+    <meta charset="UTF-8">
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-select-1.13.9/dist/css/bootstrap-select.css}"/>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css}"/>
+    <style>
+        body {
+            background-color: #343a40;
+            color: #fff;
+            margin: 20px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: #dc3545;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            color: #dc3545;
+        }
+        .form-control {
+            background-color: #343a40;
+            color: #fff;
+            border-color: #dc3545;
+        }
+        .btn-primary {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-primary:hover {
+            background-color: #c82333;
+            border-color: #c82333;
+        }
+        .btn-secondary {
+            background-color: #343a40;
+            border-color: #343a40;
+            color: #fff;
+        }
+        .btn-secondary:hover {
+            background-color: #23272b;
+            border-color: #23272b;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container col-md-7">
+        <div class="text-center">
+            <h1>Solicitud de nueva Tarjeta BCP</h1>
+        </div>
+
+        <form th:action="@{/formularioRegistro}" th:object="${form}" method="POST">
+            <div class="form-row">
+
+                <!-- Columna para textos -->
+                <div class="col-md-6">
+                    <div class="form-group" style="line-height: 170%;">
+					    <label>Tipo de Documento:</label><br/>
+					    <label>Número de Documento:</label><br/>
+					    <label>Apellido Paterno:</label><br/>
+					    <label>Apellido Materno:</label><br/>
+					    <label>Nombres:</label><br/>
+					    <label>Sexo:</label><br/>
+					    <label>Fecha de Nacimiento:</label><br/>
+					    <label>Estado Civil:</label><br/>
+					    <label>Situación Laboral:</label><br/>
+					    <label>RUC:</label><br/>
+					    <label>Terminos y Condiciones:</label><br/>
+					</div>
+
+
+                </div>
+
+                <!-- Columna para entradas -->
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        <div class="form-inline">
+                            <div class="form-check">
+                                <input type="radio" th:field="*{documento}" class="form-check-input" id="dni" value="DNI" checked="checked"/>
+                                <label class="form-check-label" for="dni">DNI</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" th:field="*{documento}" class="form-check-input" id="carnetExtranjeria" value="Carnet de Extranjeria"/>
+                                <label class="form-check-label" for="carnetExtranjeria">Carnet de Extranjeria</label>
+                            </div>
+                        </div>
+
+                        <input type="text" th:field="*{nro_documento}" class="form-control" placeholder="Número de documento"/>
+                        <p th:errors="*{nro_documento}" class="text-danger">,text-danger</p>
+                        <input type="text" th:field="*{apellido_paterno}" class="form-control" placeholder="Apellido Paterno"/>
+                        <p th:errors="*{apellido_paterno}" class="text-danger">,text-danger</p>
+                        <input type="text" th:field="*{apellido_materno}" class="form-control" placeholder="Apellido Materno"/>
+                        <p th:errors="*{apellido_materno}" class="text-danger">,text-danger</p>
+                        <input type="text" th:field="*{nombres}" class="form-control" placeholder="Nombres"/>
+						 <p th:errors="*{nombres}" class="text-danger">,text-danger</p>
+                        <div class="form-inline">
+                            <div class="form-check">
+                                <input type="radio" th:field="*{sexo}" class="form-check-input" id="sexoM" value="Masculino"/>
+                                <label class="form-check-label" for="sexoM">Masculino</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="radio" th:field="*{sexo}" class="form-check-input" id="sexoF" value="Femenino"/>
+                                <label class="form-check-label" for="sexoF">Femenino</label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input type="number" th:field="*{dia}" class="form-control" placeholder="Día"/>
+                                <p th:errors="*{dia}" class="text-danger">,text-danger</p>
+                            </div>
+                            <div class="col-md-4">
+                                <select th:field="*{mes}" class="form-control">
+                                    <option th:each="elemento: ${T(com.miempresa.DTO.OpcionesMes).values()}"
+                                            th:value="${elemento}" th:text="${elemento}" />
+                                    <p th:errors="*{mes}" class="text-danger">,text-danger</p>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input type="number" th:field="*{anio}" class="form-control" placeholder="Año"/>
+                                <p th:errors="*{anio}" class="text-danger">,text-danger</p>
+                            </div>
+                        </div>
+
+                        <select th:field="*{est_civil}" class="form-control">
+                            <option th:each="elemento: ${T(com.miempresa.DTO.OpcionesCivil).values()}"
+                                    th:value="${elemento}" th:text="${elemento}" />
+                            
+                        </select>
+
+                        <select th:field="*{sit_laboral}" class="form-control">
+                            <option th:each="elemento: ${T(com.miempresa.DTO.OpcionesLaboral).values()}"
+                                    th:value="${elemento}" th:text="${elemento}" />
+                            
+                        </select>
+
+                        <input type="number" th:field="*{ruc}" class="form-control" placeholder="RUC"/>
+                        <p th:errors="*{ruc}" class="text-danger">,text-danger</p>
+                        <input type="checkbox" th:field="*{terminos}" class="form-check-input" id="terminosCheck" value="true"/>
+                        <p th:errors="*{terminos}" class="text-danger">,text-danger</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Solicitar nueva tarjeta</button>
+                <a href="/" class="btn btn-secondary">Volver a Index</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
